@@ -1,21 +1,35 @@
 <% if logged_in? %>
-  <div class="row">
-    <aside class="col-sm-4">
-      <%= form_with(model: @dolist, local: true) do |f| %>
-        <div class="form-group">
-          <%= f.text_area :content, class: 'form-control', rows: 5 %>
-        </div>
-        <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
+  <h1>タスク一覧</h1>
+
+<% if @dolists.any? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>ステータス</th>
+        <th>タスク</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @dolists.each do |message| %>
+        <tr>
+          <td><%= link_to message.id, message %></td>
+          <td><%= message.status %></td>
+          <td><%= message.content %></td>
+        </tr>
       <% end %>
-    </aside>
-    <div class="col-sm-8">
-      <%= render 'dolists/dolists', dolists: @dolists %>
-    </div>
+    </tbody>
+  </table>
+  <div>
+    <%= paginate @dolists %>
   </div>
+<% end %>
+
+<%= link_to '新規タスクの投稿', new_dolist_path, class: "btn btn-primary" %>
 <% else %>
   <div class="center jumbotron">
     <div class="text-center">
-      <h1>Welcome to the Dolists</h1>
+      <h1>Welcome to the Todolists</h1>
       <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
     </div>
   </div>

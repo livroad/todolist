@@ -1,0 +1,19 @@
+<h1>id: <%= @dolist.id %> のタスク詳細ページ</h1>
+
+<table class="table table-bordered">
+  <tr>
+    <th>id</th>
+    <td><%= @dolist.id %></td>
+  </tr>
+  <tr>
+    <th>ステータス</th>
+    <td><%= @dolist.status %></td>
+  </tr>
+  <tr>
+    <th>タスク</th>
+    <td><%= @dolist.content %></td>
+  </tr>
+</table>
+
+<%= link_to 'このタスクを編集する', edit_dolist_path(@dolist), class: 'btn btn-light' %>
+<%= link_to 'このタスクを削除する', @dolist, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'btn btn-danger' %>

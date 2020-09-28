@@ -8,8 +8,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @dolists = @user.dolists.order(id: :desc).page(params[:page])
-    counts(@user)
   end
 
   def new
